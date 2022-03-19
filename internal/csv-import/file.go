@@ -8,7 +8,6 @@ import (
 
 func portCSVToString(osf *os.File) (records [][]string, err error) {
 	r := csv.NewReader(osf)
-	index := 0
 	for {
 		record, err := r.Read()
 		if err == io.EOF {
@@ -18,12 +17,7 @@ func portCSVToString(osf *os.File) (records [][]string, err error) {
 			return nil, err
 		}
 
-		if index != 0 {
-			// ラベルレコードは読み込まない
-			records = append(records, record)
-		}
-
-		index++
+		records = append(records, record)
 	}
 	return records, nil
 }

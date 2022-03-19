@@ -12,13 +12,13 @@ const (
 func fundsLoad(csvData [][]string) (fundsInfo []fundInfo, err error) {
 	index := 0
 	for _, v := range csvData {
-		var nowfundInfo fundInfo
-		err := fundLoad(&nowfundInfo, v)
-		if err != nil {
-			return nil, err
-		}
 		if index != 0 {
 			// ラベル部分は取り込まない
+			var nowfundInfo fundInfo
+			err := fundLoad(&nowfundInfo, v)
+			if err != nil {
+				return nil, err
+			}
 			fundsInfo = append(fundsInfo, nowfundInfo)
 		}
 		index++
