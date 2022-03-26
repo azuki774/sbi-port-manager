@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func Test_portCSVToString(t *testing.T) {
+func Test_PortCSVToString(t *testing.T) {
 	dir, _ := os.Getwd()
 	testfile1, _ := os.Open(dir + "/test/1999-01-23.csv")
 	rowData10 := []string{"取引", "ファンド名", "買付日", "数量", "取得単価", "現在値", "前日比", "前日比（％）", "損益", "損益（％）", "評価額", "編集"}
@@ -32,7 +32,7 @@ func Test_portCSVToString(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			gotRecords, err := portCSVToString(tt.args.osf)
+			gotRecords, err := PortCSVToString(tt.args.osf)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("portCSVToString() error = %v, wantErr %v", err, tt.wantErr)
 				return
