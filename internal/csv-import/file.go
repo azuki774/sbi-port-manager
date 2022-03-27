@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-func portCSVToString(osf *os.File) (records [][]string, err error) {
+func PortCSVToString(osf *os.File) (records [][]string, err error) {
 	r := csv.NewReader(osf)
 	for {
 		record, err := r.Read()

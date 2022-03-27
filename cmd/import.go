@@ -6,6 +6,7 @@ package cmd
 
 import (
 	"fmt"
+	dbclient "sbi-port-manager/internal/db-client"
 
 	"github.com/spf13/cobra"
 )
@@ -20,8 +21,13 @@ and usage of using your command. For example:
 Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) (err error) {
 		fmt.Println("import called")
+		if len(args) == 0 {
+			return fmt.Errorf("error: required folder path")
+		}
+		dirPath := args[0]
+		return dbclient.PostMain(dirPath)
 	},
 }
 

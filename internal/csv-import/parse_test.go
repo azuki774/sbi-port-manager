@@ -48,7 +48,7 @@ func Test_fundLoad(t *testing.T) {
 	}
 }
 
-func Test_fundsLoad(t *testing.T) {
+func Test_FundsLoad(t *testing.T) {
 	rowData10 := []string{"取引", "ファンド名", "買付日", "数量", "取得単価", "現在値", "前日比", "前日比（％）", "損益", "損益（％）", "評価額", "編集"}
 	rowData11 := []string{"積立  売却", "AAA", "--/--/--", "26231", "13000", "11403", "-258", "-2.21", "-4189.09", "-12.28", "29911.2", "詳細 "}
 	rowData12 := []string{"積立  売却", "BBB", "--/--/--", "10946", "31610", "29726", "+235", "+0.80", "-2062.22", "-5.96", "32538.07", "詳細 "}
@@ -97,7 +97,7 @@ func Test_fundsLoad(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			gotFundsInfo, err := fundsLoad(tt.args.csvData)
+			gotFundsInfo, err := FundsLoad(tt.args.csvData)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("fundsLoad() error = %v, wantErr %v", err, tt.wantErr)
 				return

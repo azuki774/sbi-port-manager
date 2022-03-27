@@ -9,7 +9,7 @@ const (
 	csvElementSize = 12
 )
 
-func fundsLoad(csvData [][]string) (fundsInfo []fundInfo, err error) {
+func FundsLoad(csvData [][]string) (fundsInfo []fundInfo, err error) {
 	index := 0
 	for _, v := range csvData {
 		if index != 0 {
