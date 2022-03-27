@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: sbi-port-client
+spec:
+  schedule: "0 10 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: sbi-port-client
+            image: ghcr.io/azuki774/sbi-port-manager:latest
+            imagePullPolicy: Always
+            args:
+            - import
+            - /csv/
+            env:
+            - name: TZ
+              value: Asia/Tokyo
+            volumeMounts:
+            - name: sbi-fetcher-pv
+              mountPath: /csv/
+          volumes:
+          - name: sbi-fetcher-pv
+            persistentVolumeClaim:
+              claimName: sbi-fetcher-pv-claim
+          restartPolicy: OnFailure
+        
