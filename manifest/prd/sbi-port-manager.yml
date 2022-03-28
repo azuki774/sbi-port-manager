@@ -1,0 +1,37 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: sbi-port-client
+spec:
+  schedule: "0 10 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: sbi-port-client
+            image: ghcr.io/azuki774/sbi-port-manager:latest
+            imagePullPolicy: Always
+            args:
+            - import
+            - /csv/
+            env:
+            - name: TZ
+              value: Asia/Tokyo
+            - name: DB_ADDRESS
+              value: http://192.168.1.180:8086
+            - name: DB_TOKEN
+              value: 6iDlifKk8ZcfZYm2eQmZJtvyAs7TkRiNWfFX_vYZTOAGR-fncMtd3fTzU18Q9LkJj7Om6nPZ2tSXtLtncmsqCg==
+            - name: DB_ORG
+              value: organization
+            - name: DB_BUCKET
+              value: sbi-port
+            volumeMounts:
+            - name: sbi-fetcher-pv
+              mountPath: /csv/
+          volumes:
+          - name: sbi-fetcher-pv
+            persistentVolumeClaim:
+              claimName: sbi-fetcher-pv-claim
+          restartPolicy: OnFailure
+            
