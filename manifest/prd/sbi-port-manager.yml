@@ -18,6 +18,14 @@ spec:
             env:
             - name: TZ
               value: Asia/Tokyo
+            - name: DB_ADDRESS
+              value: http://192.168.1.104:8086
+            - name: DB_TOKEN
+              value: WjxVZmzfw7xJN6yoDz7HKsDudFtHKi8QJvAMTpVHdUyVkSwHvSjIlY5v_bOygzKcT0ppcJCvxOVDAg9zSvQx1g==
+            - name: DB_ORG
+              value: organization
+            - name: DB_BUCKET
+              value: sbi-port
             volumeMounts:
             - name: sbi-fetcher-pv
               mountPath: /csv/
@@ -26,4 +34,4 @@ spec:
             persistentVolumeClaim:
               claimName: sbi-fetcher-pv-claim
           restartPolicy: OnFailure
-        
+            
